@@ -1,4 +1,4 @@
-# Template Project Repo
+# PW Communications - Homelessness Analysis
 
 - Project repos should be named [client]\_[project]\_[semesterletter][twodigityear]
 
