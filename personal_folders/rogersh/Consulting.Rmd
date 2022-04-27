@@ -1,0 +1,20 @@
+---
+title: "PW_Communications"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(trelliscopejs)
+library(plotly)
+library(ggplot2)
+library(purrr)
+library(tidyr)
+library(tidyselect)
+```
+
+```{r load_data}
+# Use this R-Chunk to import all your datasets!
+testdata <- read.csv("fsr_input.tsv.gz", sep = ',', header = TRUE)
+```
+
