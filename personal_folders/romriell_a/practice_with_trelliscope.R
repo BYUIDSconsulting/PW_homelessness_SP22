@@ -22,6 +22,31 @@ qplot(year, lifeExp, data = dat) +
   theme_bw() +
   facet_trelliscope(~ country + continent, nrow = 2, ncol = 7, width =300)
 
+# working with just the trelliscope function
+# View(dat)
 
+gapminder %>% 
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_point() +
+  geom_line()
+# making a plot function
+yr_by_lifExp<- function(x) {
+  return(gapminder %>% 
+           ggplot(aes(x = year, y = lifeExp)) +
+           geom_point() +
+           geom_line()
+  )
+}
 
+# grouping the dataset by continent
+by_continent <- dat %>% 
+  group_by(continent) %>% 
+  nest() %>% 
+  # making a cognostic for the trelliscope
+  mutate(mean_gdp_Per_year = map_dbl(data, function(x) (mean(x$gdpPercap*x$pop))),
+         mean_pop = map(data, function(x) (mean(x$pop))),
+         panel = map_plot(data, yr_by_lifExp))
+View(by_continent)
 
+trelliscope(by_continent, 
+            name = 'Basic Gapminder Trelliscope')
