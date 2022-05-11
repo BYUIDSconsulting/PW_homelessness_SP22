@@ -40,13 +40,18 @@ yr_by_lifExp<- function(x) {
 
 # grouping the dataset by continent
 by_continent <- dat %>% 
-  group_by(continent) %>% 
+  group_by(continent, country) %>% 
   nest() %>% 
   # making a cognostic for the trelliscope
   mutate(mean_gdp_Per_year = map_dbl(data, function(x) (mean(x$gdpPercap*x$pop))),
-         mean_pop = map(data, function(x) (mean(x$pop))),
+         mean_pop = map_dbl(data, function(x) (mean(x$pop))),
          panel = map_plot(data, yr_by_lifExp))
 View(by_continent)
+
+by_continent2 <- as_cognostics(
+  x = by_continent
+  , cond_cols = c('mean_gdp_Per_year', 'mean_pop', 'panel')
+)
 
 trelliscope(by_continent, 
             name = 'Basic Gapminder Trelliscope')
