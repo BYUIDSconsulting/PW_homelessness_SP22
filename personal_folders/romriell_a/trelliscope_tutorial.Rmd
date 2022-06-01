@@ -1,0 +1,111 @@
+---
+title: "Trelliscope Links"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Load in Libraries
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(trelliscopejs)
+library(gapminder)
+```
+
+### Example Data
+
+We will use the gapminder data set of different countries life expectancy to demonstrate how you can create links within a trelliscope.
+
+```{r}
+dat <- gapminder::gapminder
+head(dat)
+```
+
+### Countries Life Expectancy Trelliscope
+
+This is the function we will use to create the plots within the trelliscope
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+point_plot <- function(dat){
+  ggplot(dat) +
+    geom_point(aes(x = year, y = lifeExp)) +
+    ylim(0,84) +
+    theme_bw()
+}
+```
+
+We nest our dataframe based on country and continent and use our plotting function to create a plot for each country.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+dat_count <- dat %>% 
+  nest(-c(country,continent))
+dat_count <- dat_count %>% 
+  mutate(dat_plot = map_plot(data, point_plot))
+```
+
+
+Then, we create our trelliscope named "Life Expectnacy by Country" within the lifeExpectancy folder in our path. Once we run trel_count the countries trelliscope will be made.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+trel_count <- dat_count %>% 
+  trelliscope(name="Life Expectancy by Country",
+              path = "~lifeExpectancy",
+              thumb = T,
+              nrow = 1, 
+              ncol = 2
+  )
+```
+
+### Continents Life Expectancy Trelliscope with Links
+Here we are creating a trelliscope based on continents from the same dataset. In order to create a link with the other trelliscope we will use the `cog_disp_filter()` function.
+
+In the `cog_disp_filter()` function we will use the following arguments:
+
+ * *display* - choose the display we are linking to 
+ * *var* - determine which variable to filter on
+ * *val* - determine the values of the filters
+
+We nest with the continent and the links
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+dat_cont <- dat %>% 
+  mutate(countries_link = cog_disp_filter(
+    display = "Life_Expectancy_by_Country",
+    var = "continent",
+    val = continent, 
+    default_label = TRUE
+  )) %>% 
+  nest(-c(continent,countries_link))
+```
+
+Map the plot function to each continent.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+dat_cont <- dat_cont %>% 
+  mutate(dat_plot <- map_plot(data, point_plot))
+  
+```
+
+Create the trelliscope with the same path as the countries trelliscope.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+trel_cont <- dat_cont %>% 
+  trelliscope(name="Life Expectancy by Continent",
+              path = "~lifeExpectancy",
+              thumb = T,
+              nrow = 1, 
+              ncol = 2
+              )
+```
+
+Now the continents trelliscope will have a link to a filtered by continent version of the countries trelliscope.
+
+
+`trel_count`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+trel_cont
+```
