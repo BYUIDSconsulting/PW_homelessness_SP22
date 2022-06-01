@@ -38,7 +38,7 @@ base_get_data_url <- function(dataset_name = '', dataset = '', line_code = '', a
 }
 
 total_employment_per_county_per_year <- function(api_key ='') {
-  old <- Sys.time()
+  
   dataset_name <- "Regional"
   dataset <- "CAEMP25N"
   line_code <- '10'
@@ -59,7 +59,5 @@ total_employment_per_county_per_year <- function(api_key ='') {
     r <- as.data.frame(dat_1st$BEAAPI$Results$Data[j])
     dat <- bind_rows(dat,r)
   }
-  new <- Sys.time() - old
-  print(new)
   return(dat)
 }

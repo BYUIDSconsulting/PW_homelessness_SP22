@@ -14,5 +14,7 @@ fred_key <- Sys.getenv('fred_api_key')
 
 # adding my api key
 fredr_set_key(fred_key)
+fredr_has_key()
 
-fredr()
+
+search_ls <- fredr_series_search_tags('state unemployment')
