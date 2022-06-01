@@ -43,6 +43,7 @@ list_of_data <- GET(bea_url_call)
 # converting the json to R readable format
 results_list_of_data <- fromJSON(as.character(list_of_data))
 # isolating the seciton of data I want
+# View(results_list_of_data$BEAAPI$Results$Dataset)
 dataset_name <- results_list_of_data$BEAAPI$Results$Dataset[[10]][1]
 
 # OPTIONAL-------OPTIONAL---------------OPTIONAL----------------------------------------------
@@ -73,6 +74,7 @@ View(results_pv_call)
 
 # 4) Getting the names of the datasets that I want-------------------------------------------
 # manually picked out the data tables that I want from the Regional Section of data
+
 desired_data <- c(1,3,7,8,11,13,15)
 
 # making a loop to pull out the names of the datasets
@@ -92,7 +94,7 @@ list_of_datasets
 # 7 shows how much business paid to employees per year? 
 
 # isolating a single dataset
-first_dataset <- list_of_datasets[4]
+first_dataset <- list_of_datasets[1]
 first_dataset
 #5) Manually choose the line codes of data that I would like----------------------------------
 # look at automating this process
@@ -114,7 +116,7 @@ filtered_params_res <- get_call_to_list(filtered_params_call)
 line_code_res <- filtered_params_res$BEAAPI$Results$ParamValue
 line_code_res
 # the line code is needed to pull out the dataset that I want
-line_code_res[2][[1]][1]
+line_code_res[1][[1]][1]
 line_code <- line_code_res[1][[1]][1]
 
 
@@ -160,9 +162,12 @@ View(df1)
 setwd("~/School/Consulting/PW_homelessness_SP22/personal_folders/romriell_a")
 write.csv(df1, '../../data/collected_data/personal_income_per_county_per_year.csv')
 
+start <- Sys.time()
+start
+end <- Sys.time() - start
+end
 
-
-
+test_dat <- total_employment_per_county_per_year(bea_key)
 # code graveyard-------------------------------------------------------------------------------------------------
 # tried to automate getting line codes
 # for (i in line_code_res) {
