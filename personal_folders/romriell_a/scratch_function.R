@@ -8,6 +8,8 @@
 # }
 # foo()
 
+library(bea.R)
+
 get_call_to_list <- function(call_url){
   results <- GET(call_url)
   return(fromJSON(as.character(results)))
@@ -61,3 +63,28 @@ total_employment_per_county_per_year <- function(api_key ='') {
   }
   return(dat)
 }
+
+
+
+### using bea.R to pull in data ###
+# getting the api key
+# total employment dataset: CAEMP25N
+# line_item: 10
+bea_key <- Sys.getenv('bea_api_key')
+getSpec <- list('UserID' = bea_key
+                , 'Method' = 'GetData'
+                , 'datasetname' = 'CAEMP25N'
+                , 'TableID' = '10'
+                , 'Year' = 'X')
+getSpec_test <- list('UserID' = bea_key
+                     , 'Method' = 'GetData'
+                     , 'datasetname' = 'NIPA'
+                     , 'Frequency' = 'A'
+                     , 'TableID' = '68'
+                     , 'Year' = 'X')
+
+# making the api call
+dat_test <- beaGet(beaSpec = getSpec_test, asTable = TRUE)
+dat_viz_test <- beaViz(dat_test)
+
+View(dat_test)
