@@ -49,4 +49,4 @@ og_dat %>%
 
 # next steps: 
 # - make a function to aggregate to state/year
-# - add a perameter that can select upto an available year. 
+# - add a perameter that can select upto an available year.
