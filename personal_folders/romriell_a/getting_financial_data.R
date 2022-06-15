@@ -94,7 +94,7 @@ list_of_datasets
 # 7 shows how much business paid to employees per year? 
 
 # isolating a single dataset
-first_dataset <- list_of_datasets[1]
+first_dataset <- list_of_datasets[2]
 first_dataset
 #5) Manually choose the line codes of data that I would like----------------------------------
 # look at automating this process
@@ -116,8 +116,8 @@ filtered_params_res <- get_call_to_list(filtered_params_call)
 line_code_res <- filtered_params_res$BEAAPI$Results$ParamValue
 line_code_res
 # the line code is needed to pull out the dataset that I want
-line_code_res[1][[1]][1]
-line_code <- line_code_res[1][[1]][1]
+line_code_res[3][[1]][1]
+line_code <- line_code_res[3][[1]][1]
 line_code
 
 
@@ -159,7 +159,7 @@ for (j in 2:length(dat_1st$BEAAPI$Results$Data)) {
 # end_time <- hms(end_time)
 
 View(df1)
-setwd("~/School/Consulting/PW_homelessness_SP22/personal_folders/romriell_a")
+    setwd("~/School/Consulting/PW_homelessness_SP22/personal_folders/romriell_a")
 write.csv(df1, '../../data/collected_data/personal_income_per_county_per_year.csv')
 
 start <- Sys.time()

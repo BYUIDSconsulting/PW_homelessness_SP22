@@ -16,10 +16,20 @@ library(stringr)
 # og_dat <- tot_employ(bea_key)
 View(og_dat)
 # getting how long it takes to run the function
+# total employment
 start <- Sys.time()
 dat_test <- tot_employ(bea_key)
 duration <- Sys.time() - start
 duration
+
+# gdp real $
+start <- Sys.time()
+gdp_dat <- gdp_cur_bea(bea_key)
+duration <- Sys.time() - start
+duration
+
+# checking the data
+View(gdp_dat)
 # how long does it take to get all the data from tot_employ
 # duration: 4 mins 33 secs
 View(dat_test)
@@ -28,7 +38,7 @@ string_test <- dat_test$GeoName
 str_view_all(string_test, '[[:upper:]$]{2}')
 
 
-og_dat %>% 
+df1 %>% 
   mutate(DataValue = str_replace_all(DataValue, ',', ''), 
          TimePeriod = as.numeric(TimePeriod), 
          DataValue = str_replace(DataValue, '\\(NA\\)', '0'),
