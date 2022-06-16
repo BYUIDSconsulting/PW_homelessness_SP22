@@ -94,7 +94,7 @@ list_of_datasets
 # 7 shows how much business paid to employees per year? 
 
 # isolating a single dataset
-first_dataset <- list_of_datasets[2]
+first_dataset <- list_of_datasets[4]
 first_dataset
 #5) Manually choose the line codes of data that I would like----------------------------------
 # look at automating this process
