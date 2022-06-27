@@ -22,6 +22,8 @@ dat_test <- tot_employ(bea_key)
 duration <- Sys.time() - start
 duration
 
+View(dat_test)
+
 # gdp real $
 start <- Sys.time()
 gdp_dat <- gdp_cur_bea(bea_key)

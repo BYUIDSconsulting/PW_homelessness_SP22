@@ -14,6 +14,7 @@ dat_testing <- tot_employ_bea(bea_key2)
 duration <- Sys.time() - start
 duration
 
+View(dat_testing)
 
 
 ## testing Justins Fxns
@@ -34,7 +35,9 @@ duration
 
 ## testing Hunter's fxns
 # testing  
+hunt_api_key <- "b5f34962b7764c50ed301496b757b7c802d2e876"
 start <- Sys.time()
-dat_testing_hud <- gather_hud_data()
+homelessR::establish_census_api(hunt_api_key)
+dat_testing_hud <- get_census_data()
 duration <- Sys.time() - start
 duration
