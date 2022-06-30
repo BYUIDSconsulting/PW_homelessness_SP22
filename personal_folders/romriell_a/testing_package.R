@@ -11,7 +11,6 @@ update_homelessR_package <- function() {
   library(homelessR)
 }
 
-update_homelessR_package()
 
 bea_key2 <- Sys.getenv('bea_api_key')
 
