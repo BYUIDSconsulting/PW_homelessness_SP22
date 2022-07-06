@@ -11,6 +11,17 @@ update_homelessR_package <- function() {
   library(homelessR)
 }
 
+update_homelessR_package()
+
+# looking in the spot where the functions live.
+# Adam's fxns
+source('homelessR/R/bea2.r')
+# Hunter's fxns
+source('homelessR/R/cen.R')
+# Becca's fxns
+source('homelessR/R/crime_functions.R')
+# Justin's fxns
+source('homelessR/R/hud.r')
 
 bea_key2 <- Sys.getenv('bea_api_key')
 

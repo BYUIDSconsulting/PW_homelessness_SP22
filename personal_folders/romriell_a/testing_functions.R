@@ -2,7 +2,7 @@
 
 # looking in the spot where the functions live.
 # Adam's fxns
-source('homelessR/R/bea.r')
+source('homelessR/R/bea2.r')
 # Hunter's fxns
 source('homelessR/R/cen.R')
 # Becca's fxns
@@ -25,9 +25,10 @@ View(og_dat)
 # getting how long it takes to run the function
 # total employment
 start <- Sys.time()
-dat_test <- tot_employ(bea_key)
+dat_test <- tot_employ_bea(bea_key)
 duration <- Sys.time() - start
 duration
+
 
 View(dat_test)
 
@@ -54,6 +55,66 @@ duration
 
 View(dat_testing_hud)
 
+
+## testing Becca's fxns
+# testing
+start <- Sys.time()
+dat_testing_crime <- get_url()
+duration <- Sys.time() - start
+duration
+
+View(dat_testing_crime)
+
+## testing Hunter's fxns
+# testing  
+library(tidycensus)
+hunt_api_key <- "b5f34962b7764c50ed301496b757b7c802d2e876"
+start <- Sys.time()
+# establish_census_api(hunt_api_key)
+dat_testing_hud <- get_census_data()
+duration <- Sys.time() - start
+duration
+
+View(dat_testing_hud)
+
+
+#######################################################################################
+#######################################################################################
+
+
+
+### showing my testing work ###
+
+str_view_all(string_test, '[[:upper:]$]{2}')
+
+
+df1 %>% 
+  mutate(DataValue = str_replace_all(DataValue, ',', ''), 
+         TimePeriod = as.numeric(TimePeriod), 
+         DataValue = str_replace(DataValue, '\\(NA\\)', '0'),
+         DataValue = as.numeric(DataValue),
+         DataValue = replace_na(DataValue, 0),
+         GeoName = str_replace(GeoName, '\\*', ''),
+         state = str_extract(GeoName, '[[:upper:]$]{2}')) %>%
+  # separate(col = GeoName
+  #          , into = c('county', 'state')
+  #          , sep = ','
+  #          , extra = 'merge') %>%
+  # View()
+  select(-GeoFips, -GeoName, -NoteRef) %>%
+  group_by(state, TimePeriod) %>% 
+  mutate(DataValue = sum(DataValue)) %>%
+  distinct() %>% 
+  View()
+
+
+
+# next steps: 
+# - make a function to aggregate to state/year
+# - add a perameter that can select upto an available year.
+
+### working to get Justin's columns are numeric data types ###
+
 char_to_num <- ifelse(is.na(as.numeric(dat_testing_hud$`Overall Homeless`)), 0, dat_testing_hud$`Overall Homeless`) 
 View(char_to_num)
 ## there seems to be a list object in one of the columns
@@ -66,7 +127,7 @@ char_num_test <- dat_testing_hud
 
 convert_char_to_num_cols <- function(data, column_name) {
   for (i in check_cols) {
-  data[,i] <- as.numeric(data[,i])}
+    data[,i] <- as.numeric(data[,i])}
   return(data)
 }
 
@@ -112,55 +173,5 @@ for (i in check_cols) {
 }
 View(swap_0_dat)
 
-## testing Becca's fxns
-# testing
-start <- Sys.time()
-dat_testing_hud <- gather_hud_data()
-duration <- Sys.time() - start
-duration
-
-## testing Hunter's fxns
-# testing  
-hunt_api_key <- "b5f34962b7764c50ed301496b757b7c802d2e876"
-start <- Sys.time()
-homelessR::establish_census_api(hunt_api_key)
-dat_testing_hud <- get_census_data()
-duration <- Sys.time() - start
-duration
 
 
-
-
-
-
-
-
-
-
-str_view_all(string_test, '[[:upper:]$]{2}')
-
-
-df1 %>% 
-  mutate(DataValue = str_replace_all(DataValue, ',', ''), 
-         TimePeriod = as.numeric(TimePeriod), 
-         DataValue = str_replace(DataValue, '\\(NA\\)', '0'),
-         DataValue = as.numeric(DataValue),
-         DataValue = replace_na(DataValue, 0),
-         GeoName = str_replace(GeoName, '\\*', ''),
-         state = str_extract(GeoName, '[[:upper:]$]{2}')) %>%
-  # separate(col = GeoName
-  #          , into = c('county', 'state')
-  #          , sep = ','
-  #          , extra = 'merge') %>%
-  # View()
-  select(-GeoFips, -GeoName, -NoteRef) %>%
-  group_by(state, TimePeriod) %>% 
-  mutate(DataValue = sum(DataValue)) %>%
-  distinct() %>% 
-  View()
-
-
-
-# next steps: 
-# - make a function to aggregate to state/year
-# - add a perameter that can select upto an available year.
