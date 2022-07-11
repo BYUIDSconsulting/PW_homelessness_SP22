@@ -1,0 +1,49 @@
+---
+title: "Trel_homeless"
+author: "Justin Schultz"
+date: '2022-06-23'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(trelliscopejs)
+library(tidycensus)
+data <- gather_hud_data()
+
+# key <- establish_census_api("b5f34962b7764c50ed301496b757b7c802d2e876")
+cen <- get_census_data(start_year = 2007, end_year = 2019)
+
+
+```
+
+```{r}
+my_data <- merge(cen, data, by = c("state", "Year"))
+my_data <-  my_data %>% mutate(percent_homeless = (my_data$`Overall Homeless`/my_data$`Estimate!!Total`)*100)
+states <- my_data %>% 
+  group_by(state) %>% 
+  nest()
+```
+
+
+
+```{r}
+homeless <- function(d){
+  plot_ly(d, x=~Year, y = ~`percent_homeless`, type = 'scatter', mode = 'lines')}
+
+my_data <- my_data %>% filter(!state %in% c("American Samoa"))
+# data$`Overall Homeless`
+```
+
+```{r}
+states <- mutate(states, 
+                 panel = map_plot(data, homeless)) %>% 
+  ungroup()
+  
+  
+states %>%
+  trelliscope(name='state', nrow = 2, ncol = 3,
+              path = '../../trelliscope/percent_homeless')
+```
+
