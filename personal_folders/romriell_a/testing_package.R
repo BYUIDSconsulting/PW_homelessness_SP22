@@ -34,9 +34,17 @@ duration
 
 View(dat_testing)
 
+# testing gdp
+start <- Sys.time()
+dat_testing <- gdp_cur_bea(bea_key2)
+duration <- Sys.time() - start
+duration
+
+View(dat_testing)
 
 ## testing Justins Fxns
 # testing HUD
+### WORKS ###
 start <- Sys.time()
 dat_testing_hud <- gather_hud_data()
 duration <- Sys.time() - start
@@ -46,16 +54,36 @@ View(dat_testing_hud)
 
 ## testing Becca's fxns
 # testing
+### WORKS ###
 start <- Sys.time()
-dat_testing_hud <- gather_hud_data()
+dat_testing_crime <- get_url()
 duration <- Sys.time() - start
 duration
 
+View(dat_testing_crime)
+
 ## testing Hunter's fxns
 # testing  
+### WORKS ###
 hunt_api_key <- "b5f34962b7764c50ed301496b757b7c802d2e876"
 start <- Sys.time()
-homelessR::establish_census_api(hunt_api_key)
+# establish_census_api(hunt_api_key)
 dat_testing_hud <- get_census_data()
 duration <- Sys.time() - start
 duration
+
+View(dat_testing_hud)
+
+
+source('homelessR/R/unemployment.r')
+# testing the unemployment fxn
+### WORKS ###
+start <- Sys.time()
+unemply_dat_test <- unemployment()
+duration <- Sys.time()-start
+duration
+
+View(unemply_dat_test)
+
+
+
