@@ -15,11 +15,13 @@ data <- gather_hud_data()
 # key <- establish_census_api("b5f34962b7764c50ed301496b757b7c802d2e876")
 cen <- get_census_data(start_year = 2007, end_year = 2019)
 
+unemp <- unemployment()
 
 ```
 
 ```{r}
 my_data <- merge(cen, data, by = c("state", "Year"))
+my_data <- merge(my_data, unemp,  by= c("state", "Year"))
 my_data <-  my_data %>% mutate(percent_homeless = (my_data$`Overall Homeless`/my_data$`Estimate!!Total`)*100)
 states <- my_data %>% 
   group_by(state) %>% 
