@@ -1,0 +1,160 @@
+* using log directory 'C:/Users/thead/Documents/School/Consulting/PW_homelessness_SP22/homelessR.Rcheck'
+* using R version 4.2.0 (2022-04-22 ucrt)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: UTF-8
+* using options '--no-manual --as-cran'
+* checking for file 'homelessR/DESCRIPTION' ... OK
+* this is package 'homelessR' version '0.0.0.9100'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking serialization versions ... OK
+* checking whether package 'homelessR' can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import 'dplyr::last' by 'gdata::last' when loading 'homelessR'
+  Warning: replacing previous import 'dplyr::combine' by 'gdata::combine' when loading 'homelessR'
+  Warning: replacing previous import 'dplyr::first' by 'gdata::first' when loading 'homelessR'
+  Warning: replacing previous import 'magrittr::extract' by 'tidyr::extract' when loading 'homelessR'
+See 'C:/Users/thead/Documents/School/Consulting/PW_homelessness_SP22/homelessR.Rcheck/00install.out' for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+  license
+Standardizable: FALSE
+Authors@R field gives persons with no role:
+  Adam Romriell <adamromriell@gmail.com>
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  'openxlsx' 'rjson'
+A package should be listed in only one of these fields.
+* checking top-level files ... NOTE
+Non-standard file/directory found at top level:
+  'docs'
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+ST_to_State: no visible binding for global variable 'state.name'
+ST_to_State: no visible binding for global variable 'state.abb'
+ST_to_State: no visible binding for global variable 'state'
+agg_state_year: no visible binding for global variable 'DataValue'
+agg_state_year: no visible binding for global variable 'TimePeriod'
+agg_state_year: no visible binding for global variable 'GeoName'
+agg_state_year: no visible binding for global variable 'state'
+clean_data: no visible binding for global variable 'state'
+clean_data: no visible binding for global variable 'area_type'
+filter_year: no visible binding for global variable 'TimePeriod'
+gather_hud_data: no visible binding for global variable 'State'
+gdp_cur_bea: no visible binding for global variable 'DataValue'
+get_census_data: no visible binding for global variable 'concept'
+get_census_data: no visible binding for global variable 'name'
+get_census_data: no visible binding for global variable 'label'
+get_census_data: no visible binding for global variable 'value'
+get_census_data: no visible binding for global variable 'NAME'
+get_census_data: no visible binding for global variable 'Category'
+get_everything: no visible binding for global variable 'data7'
+get_url: no visible global function definition for 'download.file'
+get_url: no visible binding for global variable 'state'
+get_url: no visible binding for global variable 'area_type'
+get_url: no visible binding for global variable 'county'
+get_url: no visible binding for global variable 'violent_crime'
+get_url: no visible binding for global variable
+  'murder_and_nonnegligent_manslaughter'
+get_url: no visible binding for global variable 'rape'
+get_url: no visible binding for global variable 'robbery'
+get_url: no visible binding for global variable 'aggravated_assault'
+get_url: no visible binding for global variable 'property_crime'
+get_url: no visible binding for global variable 'burglary'
+get_url: no visible binding for global variable 'larceny_theft'
+get_url: no visible binding for global variable 'motor_vehicle_theft'
+get_url: no visible binding for global variable 'arson'
+get_url: no visible binding for global variable 'Year'
+tot_employ_bea: no visible binding for global variable 'DataValue'
+unemployment: no visible binding for global variable 'Area'
+unemployment: no visible binding for global variable 'state'
+Undefined global functions or variables:
+  Area Category DataValue GeoName NAME State TimePeriod Year
+  aggravated_assault area_type arson burglary concept county data7
+  download.file label larceny_theft motor_vehicle_theft
+  murder_and_nonnegligent_manslaughter name property_crime rape robbery
+  state state.abb state.name value violent_crime
+Consider adding
+  importFrom("datasets", "state.abb", "state.name")
+  importFrom("utils", "download.file")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... NOTE
+Rd file 'hud_data.Rd':
+  \usage lines wider than 90 characters:
+         url1 = "https://www.huduser.gov/portal/sites/default/files/xls/2007-2021-PIT-Counts-by-State.xlsx"
+
+Rd file 'unemployment.Rd':
+  \usage lines wider than 90 characters:
+         url1 = "http://www.icip.iastate.edu/sites/default/files/uploads/tables/employment/emp-unemployment.xls"
+
+These lines will be truncated in the PDF manual.
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  'spending_data' 'unemploy_rate_data'
+Undocumented data sets:
+  'spending_data' 'unemploy_rate_data'
+All user-level objects in a package should have documentation entries.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'convert_char_to_num_cols'
+  'data'
+
+Undocumented arguments in documentation object 'get_census_data'
+  'survey'
+
+Undocumented arguments in documentation object 'get_everything'
+  'cen_api' 'bea_api'
+
+Undocumented arguments in documentation object 'get_url'
+  'start_year' 'end_year' 'region'
+Documented arguments not in \usage in documentation object 'get_url':
+  'year'
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of 'data' directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                user system elapsed
+gather_hud_data 1.88   1.14   16.04
+hud_data        0.48   1.32    6.13
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 4 WARNINGs, 3 NOTEs
