@@ -1,0 +1,127 @@
+---
+title: "Making Trelliscopes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(trelliscopejs)
+library(tidyverse)
+library(dplyr)
+library(readr)
+```
+
+```{r}
+crime <- read.csv('/Users/Becca/Documents/Data Consulting/county_data.csv', sep = ',', header = TRUE)
+```
+
+```{r}
+#cri <- crime %>%
+#  group_by(state, year) %>%
+#  summarize(sum(violent_crime), sum(murder_and_nonnegligent_manslaughter), sum(rape), sum(robbery), sum(aggravated_assault), sum(property_crime), sum(burglary), sum(larceny_theft), sum(motor_vehicle_theft), sum(arson))  
+#cri %>%
+ #     group_by(state) %>% #, year, Violent.crime, Property.crime
+     # filter(State %in% input$states) %>%
+#      nest() %>%
+ #     mutate(
+ #       panel = map_plot(data, ~
+  #                         ggplot(data = cri, aes(x = year, y = `sum(violent_crime)`)) +
+  #                         geom_line() +
+  #                         geom_point() +
+  #                         ylab('Violent Crime')
+  #                         )) %>%
+   #   ungroup() %>%
+  #    trelliscope(name = "Crime", ncol = 2, nrow = 2, self_contained = TRUE)
+```
+
+```{r}
+library("dplyr")
+
+cri <- crime %>%
+  group_by(state, year) %>%
+  summarize(sum(violent_crime), sum(murder_and_nonnegligent_manslaughter), sum(rape), sum(robbery), sum(aggravated_assault), sum(property_crime), sum(burglary), sum(larceny_theft), sum(motor_vehicle_theft), sum(arson))  
+
+ggplot(data = cri, aes(x = year, y = `sum(violent_crime)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Violent Crime') +
+  ggtitle('Violent Crime over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Violent Crime over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(murder_and_nonnegligent_manslaughter)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Murder and Nonnegligent Manslaughter') +
+  ggtitle('Murder and Nonnegligent Manslaughter over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = "Murder over the Years by State",path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(rape)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Rape') +
+  ggtitle('Rape over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Rape over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(robbery)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Robbery') +
+  ggtitle('Robbery over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Robbery over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(aggravated_assault)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Aggravated Assault') +
+  ggtitle('Aggravated Assault over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Aggravated Assailt over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(property_crime)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Property Crime') +
+  ggtitle('Property Crime over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Property Crime over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(burglary)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Burglary') +
+  ggtitle('Burglary over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Burglary over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(larceny_theft)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Larceny (Theft)') +
+  ggtitle('Larceny (Theft) over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Theft over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(motor_vehicle_theft)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Motor Vehicle Theft') +
+  ggtitle('Motor Vehicle Theft over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Motor Vehicle Theft over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+
+ggplot(data = cri, aes(x = year, y = `sum(arson)`, color = state)) +
+  geom_line() +
+  geom_point() +
+  theme(legend.position = 'none') +
+  ylab('Sum of Arson') +
+  ggtitle('Arson over the Years') +
+  facet_trelliscope(~state, nrow = 2, ncol = 2, name = 'Arson over the Years by State', path = '/Users/Becca/Documents/Data Consulting/shiny trelliscope/create_url/www')
+```
+
