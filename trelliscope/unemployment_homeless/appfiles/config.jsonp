@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 __loadTrscopeConfig__7ff5ed0b({
+=======
+__loadTrscopeConfig__b2caccf0({
+>>>>>>> 86ccb06df4a828a309968c774c2e440ffeee2cb6
   "display_base": "displays",
   "data_type": "jsonp",
   "cog_server": {

@@ -1,0 +1,21 @@
+ST_to_State             ST_to_State
+agg_state_year          agg_state_year
+call_to_list            call_to_list
+census_data             A data set of gdp per state per year
+clean_data              clean_data
+convert_char_to_num_cols
+                        convert_char_to_num_cols
+crime_data              Different crime counts per state per year
+establish_census_api    enter api key
+filter_year             filter_year
+gather_hud_data         Gather data from 2007 - 2020
+gdp_cur_bea             gdp_cur_bea
+gdp_data                A data set of gdp per state per year
+get_census_data         download census data
+get_everything          get_everything
+get_url                 get_url
+hud_data                download hud data
+make_get_url            make_get_url
+tot_employ_bea          tot_employ_bea
+total_employment_data   A data set of gdp per state per year
+unemployment            download Unemployment data
