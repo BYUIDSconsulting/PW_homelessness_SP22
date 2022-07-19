@@ -4,4 +4,6 @@
 .Ruserdata
 blank_project_repository.Rproj
 .DS_Store
-data/big_data
+data/big_datad
+testwww/
+app/www/

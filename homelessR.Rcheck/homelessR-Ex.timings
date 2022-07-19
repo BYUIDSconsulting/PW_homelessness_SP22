@@ -1,7 +1,0 @@
-name	user	system	elapsed
-census_data	0.07	0.00	0.14	
-crime_data	0.03	0.00	0.03	
-gather_hud_data	 1.88	 1.14	16.04	
-gdp_data	0.02	0.00	0.02	
-hud_data	0.48	1.32	6.13	
-total_employment_data	0.01	0.00	0.02	
