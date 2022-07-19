@@ -82,10 +82,10 @@ observeEvent(input$trells, {
     theme_bw() +
     ylab(isolate(input$y_axis)) +
     facet_trelliscope(~ isolate(input$facet), nrow = 2, ncol = 2, name = isolate(input$save_trell), 
-                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
+                      path = '/Users/Becca/Documents/Data Consulting/PW_homelessness_SP22/trelliscope')
 
        ggsave(trell)
- trell
+  return(trell)
 #crime %>%
 #  group_by(input$facet) %>% 
 #  nest() %>%
