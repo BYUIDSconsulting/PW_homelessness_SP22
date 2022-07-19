@@ -18,23 +18,7 @@ full <- full_data
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
-<<<<<<< HEAD
-        selectInput(inputId = 'bea_cols', 
-                    label = 'BEA (Bureau of Economic Activity)',
-                    choices = colnames(bea)),
-        selectInput(inputId = 'census_cols',
-                    label = 'Census',
-                    choices = colnames(census)),
-        selectInput(inputId = 'crime_cols',
-                    label = 'Crime',
-                    choices = colnames(crime)),
-        selectInput(inputId = 'fund_cols',
-                    label = 'Funding',
-                    choices = colnames(spending_data)),
-        selectInput(inputId = 'hud_cols',
-                    label = 'HUD (Dept. Housing and Urban Development)',
-                    choices = colnames(hud)),
-=======
+
         h3('Create your own trelliscope'),
         selectInput(inputId = 'x_axis', 
                     label = 'What column do you want for the x-axis?',
@@ -45,7 +29,6 @@ full <- full_data
         selectInput(inputId = 'facet',
                     label = 'What would you like to facet by?',
                     choices = c('state', 'Year')),
->>>>>>> 0a71b9b9ff05d0d44021ccf7d1ec646ab06cddb9
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -84,15 +67,6 @@ observeEvent(input$trells, {
 
  output$plot <- renderTrelliscope({
     input$trells
-<<<<<<< HEAD
-  trell <- ggplot(data = full, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
-    geom_line() +
-    geom_point() +
-    theme_bw() +
-    ylab(input$column) +
-    facet_trelliscope(~ input$facet, nrow = 2, ncol = 2, name = input$save_trell, 
-                      path = '~/homelessR/create_url/www')
-=======
   trell <- ggplot(data = full, aes_string(x = isolate(input$x_axis), y = isolate(input$y_axis))) +
     geom_line() +
     geom_point() +
@@ -100,7 +74,6 @@ observeEvent(input$trells, {
     ylab(isolate(input$y_axis)) +
     facet_trelliscope(~ isolate(input$facet), nrow = 2, ncol = 2, name = isolate(input$save_trell), 
                       path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
->>>>>>> 0a71b9b9ff05d0d44021ccf7d1ec646ab06cddb9
        ggsave(trell)
  trell
 #crime %>%
