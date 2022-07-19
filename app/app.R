@@ -18,6 +18,7 @@ full <- full_data
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
+<<<<<<< HEAD:app/app.R
         h3('Create your own trelliscope'),
         selectInput(inputId = 'x_axis', 
                     label = 'What column do you want for the x-axis?',
@@ -36,6 +37,8 @@ full <- full_data
         actionButton(inputId = 'trells',
                      label = 'Create Trelliscope'),
         h3('View Pre-made Trelliscopes'),
+=======
+>>>>>>> 3b1b2802962638031aae313c11744846f3ef2862:app.R
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -113,6 +116,42 @@ server <- function(input, output, session) {
   
 }
 
+<<<<<<< HEAD:app/app.R
+=======
+observeEvent(input$trells, {
+## when the button is clicked, create the trelliscope in the shiny app
+
+ output$plot <- renderTrelliscope({
+    input$trells
+
+  trell <- ggplot(data = full, aes_string(x = isolate(input$x_axis), y = isolate(input$y_axis))) +
+    geom_line() +
+    geom_point() +
+    theme_bw() +
+    ylab(isolate(input$y_axis)) +
+    facet_trelliscope(~ isolate(input$facet), nrow = 2, ncol = 2, name = isolate(input$save_trell), 
+                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
+       ggsave(trell)
+  return(trell)
+#crime %>%
+#  group_by(input$facet) %>% 
+#  nest() %>%
+#  mutate(
+#    panel = map_plot(data, ~
+#                       ggplot(data = crime, aes_string(x = input$x-axis, y = input$y-axis)) +
+#                       geom_line() +
+#                       gemo_point() +
+#                       theme_bw() +
+#                       ylab(input$column)
+#    )) %>%
+#  ungroup() %>%
+#  trelliscope(name = "Crime and Homelessness", ncol = 2, nrow = 2, self_contained = TRUE)
+#)
+ }) ## end of the trelliscope
+
+}) ## observeEvent for trells
+
+>>>>>>> 3b1b2802962638031aae313c11744846f3ef2862:app.R
 
 # Run the application 
 shinyApp(ui = ui, server = server)

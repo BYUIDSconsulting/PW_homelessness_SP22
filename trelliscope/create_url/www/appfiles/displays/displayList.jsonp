@@ -1,0 +1,132 @@
+__loadDisplayList__260bf272([
+  {
+    "group": "common",
+    "name": "Aggravated_Assailt_over_the_Years_by_State",
+    "desc": "Aggravated Assault over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:06:59",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Arson_over_the_Years_by_State",
+    "desc": "Arson over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:08:46",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Burglary_over_the_Years_by_State",
+    "desc": "Burglary over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:07:41",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Motor_Vehicle_Theft_over_the_Years_by_State",
+    "desc": "Motor Vehicle Theft over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:08:24",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Murder_over_the_Years_by_State",
+    "desc": "Murder and Nonnegligent Manslaughter over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:05:55",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Percent_Homeless_over_the_years",
+    "desc": "",
+    "n": 51,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-19 09:25:42",
+    "keySig": "373f9311c57f19bc54d1d1673194b52d"
+  },
+  {
+    "group": "common",
+    "name": "Population_homelessness",
+    "desc": "",
+    "n": 51,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-19 09:27:57",
+    "keySig": "373f9311c57f19bc54d1d1673194b52d"
+  },
+  {
+    "group": "common",
+    "name": "Property_Crime_over_the_Years_by_State",
+    "desc": "Property Crime over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:07:20",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Rape_over_the_Years_by_State",
+    "desc": "Rape over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:06:17",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Robbery_over_the_Years_by_State",
+    "desc": "Robbery over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:06:37",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Theft_over_the_Years_by_State",
+    "desc": "Larceny (Theft) over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:08:04",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  },
+  {
+    "group": "common",
+    "name": "Unemployment_and_homelessness",
+    "desc": "",
+    "n": 51,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-19 09:29:55",
+    "keySig": "373f9311c57f19bc54d1d1673194b52d"
+  },
+  {
+    "group": "common",
+    "name": "Violent_Crime_over_the_Years_by_State",
+    "desc": "Violent Crime over the Years",
+    "n": 37,
+    "height": 500,
+    "width": 500,
+    "updated": "2022-07-18 20:05:33",
+    "keySig": "82858ee4aca26ad6a8021206ce1fcc83"
+  }
+])
