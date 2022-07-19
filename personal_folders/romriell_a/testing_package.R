@@ -18,7 +18,7 @@ update_homelessR_package()
 
 dat_test <- hud_data
 dat_test2 <- crime_data
-
+dat_full <- full_data
 
 # looking in the spot where the functions live.
 
