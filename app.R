@@ -10,7 +10,6 @@ library(shinydashboard)
 library(readr)
 library(homelessR)
 
-crime <- crime_data
 hud <- hud_data
 bea <- left_join(gdp_data, total_employment_data)
 census <- census_data
@@ -19,6 +18,7 @@ full <- full_data
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
+<<<<<<< HEAD
         selectInput(inputId = 'bea_cols', 
                     label = 'BEA (Bureau of Economic Activity)',
                     choices = colnames(bea)),
@@ -34,6 +34,18 @@ full <- full_data
         selectInput(inputId = 'hud_cols',
                     label = 'HUD (Dept. Housing and Urban Development)',
                     choices = colnames(hud)),
+=======
+        h3('Create your own trelliscope'),
+        selectInput(inputId = 'x_axis', 
+                    label = 'What column do you want for the x-axis?',
+                    choices = colnames(full)),
+        selectInput(inputId = 'y_axis',
+                    label = 'What column do you want for the y-axis?',
+                    choices = colnames(full)),
+        selectInput(inputId = 'facet',
+                    label = 'What would you like to facet by?',
+                    choices = c('state', 'Year')),
+>>>>>>> 0a71b9b9ff05d0d44021ccf7d1ec646ab06cddb9
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -44,13 +56,6 @@ full <- full_data
                                 'Arson over the Years by State')),
         actionButton(inputId = 'view_trells',
                      label = "View"), ## view_trells 
-        h3('Create your own trelliscope'),
-        textInput(inputId = 'x-axis',
-                  label = 'X-Axis'),
-        textInput(inputId = 'y-axis',
-                  label = 'Y-Axis'),
-        textInput(inputId = 'facet',
-                  label = 'Facet By'),
         textInput(inputId = 'save_trell',
                   label = 'Name to Save'),
         actionButton(inputId = 'trells',
@@ -79,6 +84,7 @@ observeEvent(input$trells, {
 
  output$plot <- renderTrelliscope({
     input$trells
+<<<<<<< HEAD
   trell <- ggplot(data = full, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
     geom_line() +
     geom_point() +
@@ -86,6 +92,15 @@ observeEvent(input$trells, {
     ylab(input$column) +
     facet_trelliscope(~ input$facet, nrow = 2, ncol = 2, name = input$save_trell, 
                       path = '~/homelessR/create_url/www')
+=======
+  trell <- ggplot(data = full, aes_string(x = isolate(input$x_axis), y = isolate(input$y_axis))) +
+    geom_line() +
+    geom_point() +
+    theme_bw() +
+    ylab(isolate(input$y_axis)) +
+    facet_trelliscope(~ isolate(input$facet), nrow = 2, ncol = 2, name = isolate(input$save_trell), 
+                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
+>>>>>>> 0a71b9b9ff05d0d44021ccf7d1ec646ab06cddb9
        ggsave(trell)
  trell
 #crime %>%
