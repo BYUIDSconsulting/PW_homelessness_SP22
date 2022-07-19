@@ -37,13 +37,15 @@ percent_homeless <- function(d){
 
 states <- my_data %>% 
   group_by(state) %>% 
-  nest() %>% 
+  nest()
+
+states <- states %>% 
   mutate(panel = map_plot(data, percent_homeless)) %>% 
   ungroup()
 
 states %>%
   trelliscope(name='Percent Homeless over the years', nrow = 2, ncol = 3,
-              path = '../../trelliscope/percent_homeless')
+              path = '../../trelliscope/create_url/www')
 
 ######################################################################
 
@@ -65,7 +67,7 @@ states <- my_data %>%
 
 states %>%
   trelliscope(name='Population homelessness', nrow = 2, ncol = 3,
-              path = '../../trelliscope/population_homeless')
+              path = '../../trelliscope/create_url/www')
 
 ######################################################################
 
@@ -89,7 +91,7 @@ states <- my_data %>%
 
 states %>%
   trelliscope(name='Unemployment and homelessness', nrow = 2, ncol = 3,
-             path = '../../trelliscope/unemployment_homeless')
+             path = '../../trelliscope/create_url/www')
 ######################################################################
 
 ######################################################################
@@ -112,4 +114,4 @@ states <- my_data %>%
 
 states %>%
   trelliscope(name='Unemployment and homelessness', nrow = 2, ncol = 3,
-              path = '../../trelliscope/unemployment_homeless_percent')
+              path = '../../trelliscope/create_url/www')
