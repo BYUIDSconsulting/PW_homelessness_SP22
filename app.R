@@ -12,6 +12,8 @@ library(homelessR)
 
 crime <- crime_data
 hud <- hud_data
+bea <- left_join(gdp_data, total_employment_data)
+census <- census_data
 full <- full_data
   
   ui <- fluidPage(
@@ -19,22 +21,19 @@ full <- full_data
       sidebarPanel(
         selectInput(inputId = 'bea_cols', 
                     label = 'BEA (Bureau of Economic Activity)',
-                    choices = c("State", "Number.of.CoCs", "Overall.Homeless", "Sheltered.Total.Homeless", "Unsheltered.Homeless", "Overall.Homeless.Individuals","Sheltered.Total.Homeless.Individuals", "Unsheltered.Homeless.Individuals",                                                                   
-                                "Overall.Homeless.People.in.Families", "Sheltered.Total.Homeless.People.in.Families", "Unsheltered.Homeless.People.in.Families", "Overall.Homeless.Family.Households",  "Sheltered.Total.Homeless.Family.Households", "Unsheltered.Homeless.Family.Households", "Overall.Chronically.Homeless.Individuals", "Sheltered.Total.Chronically.Homeless.Individuals", "Unsheltered.Chronically.Homeless.Individuals", "Overall.Homeless.Veterans", "Sheltered.Total.Homeless.Veterans", "Unsheltered.Homeless.Veterans", "year",                                                                   
-                                "Sheltered.Total.Chronically.Homeless", "Unsheltered.Chronically.Homeless", "Overall.Chronically.Homeless.People.in.Families",                                    
-                                "Sheltered.Total.Chronically.Homeless.People.in.Families","Unsheltered.Chronically.Homeless.People.in.Families","Overall.Homeless...Under.18", "Overall.Homeless...Age.18.to.24","Overall.Homeless...Over.24")),
+                    choices = colnames(bea)),
         selectInput(inputId = 'census_cols',
                     label = 'Census',
-                    choices = c('Column 1', 'Column 2')),
+                    choices = colnames(census)),
         selectInput(inputId = 'crime_cols',
                     label = 'Crime',
-                    choices = c('state', 'violent_crime', 'murder_and_nonnegligent_manslaughter', 'rape', 'robbery', 'aggravated_assault', 'property_crime', 'burglary', 'larceny_theft', 'motor_vehicle_theft', 'arson', 'year')),
+                    choices = colnames(crime)),
         selectInput(inputId = 'fund_cols',
                     label = 'Funding',
-                    choices = c('Column 1', 'Column 2')),
+                    choices = colnames(spending_data)),
         selectInput(inputId = 'hud_cols',
                     label = 'HUD (Dept. Housing and Urban Development)',
-                    choices = c('Column 1', 'Column 2')),
+                    choices = colnames(hud)),
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -80,13 +79,13 @@ observeEvent(input$trells, {
 
  output$plot <- renderTrelliscope({
     input$trells
-  trell <- ggplot(data = cri, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
+  trell <- ggplot(data = full, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
     geom_line() +
     geom_point() +
     theme_bw() +
     ylab(input$column) +
     facet_trelliscope(~ input$facet, nrow = 2, ncol = 2, name = input$save_trell, 
-                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
+                      path = '~/homelessR/create_url/www')
        ggsave(trell)
  trell
 #crime %>%
