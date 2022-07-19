@@ -10,7 +10,6 @@ library(shinydashboard)
 library(readr)
 library(homelessR)
 
-crime <- crime_data
 hud <- hud_data
 full <- full_data
   
