@@ -9,9 +9,9 @@ library(shinythemes)
 library(shinydashboard)
 library(readr)
 library(homelessR)
-crime <- read.csv('/Users/Becca/Documents/Data Consulting/county_data.csv', sep = ',', header = TRUE)
+crime <- crime_data # read.csv('/Users/Becca/Documents/Data Consulting/county_data.csv', sep = ',', header = TRUE)
 # Define UI for application that draws a histogram
-hud <- hud
+# hud <- hud
   
   ui <- fluidPage(
     sidebarLayout(
@@ -71,7 +71,7 @@ server <- function(input, output, session) {
   observeEvent(input$view_trells, {
     showModal(modalDialog(title = 'Link to Trelliscope:',
                           helpText(a('Click the link to view trelliscope', 
-                                     href = paste0('file:///Users/Becca/Documents/Data%20Consulting/homelessR/create_url/www/index.html#display=', input$trello, '&nrow=2&ncol=2&arr=row&pg=1&labels=state&sort=state;asc&filter=&sidebar=-1&fv=',
+                                     href = paste0('~/homelessR/create_url/www/index.html#display=', input$trello, '&nrow=2&ncol=2&arr=row&pg=1&labels=state&sort=state;asc&filter=&sidebar=-1&fv=',
                                                    target = 'blank'))),
                           easyClose = TRUE))
   })
