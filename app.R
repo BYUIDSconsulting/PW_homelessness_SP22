@@ -26,6 +26,10 @@ full <- full_data
         selectInput(inputId = 'facet',
                     label = 'What would you like to facet by?',
                     choices = c('state', 'Year')),
+        textInput(inputId = 'save_trell',
+                  label = 'Name to Save'),
+        actionButton(inputId = 'trells',
+                     label = 'Create Trelliscope'),
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -35,11 +39,7 @@ full <- full_data
                                 'Theft over the Years by State', 'Motor Vehicle Theft over the Years by State',
                                 'Arson over the Years by State')),
         actionButton(inputId = 'view_trells',
-                     label = "View"), ## view_trells 
-        textInput(inputId = 'save_trell',
-                  label = 'Name to Save'),
-        actionButton(inputId = 'trells',
-                     label = 'Create Trelliscope')
+                     label = "View") ## view_trells 
       ), # sidebarPanel
       
       mainPanel(
