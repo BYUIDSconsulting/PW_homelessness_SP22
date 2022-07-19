@@ -10,11 +10,15 @@ library(shinydashboard)
 library(readr)
 library(homelessR)
 
+
 hud <- hud_data
 bea <- left_join(gdp_data, total_employment_data)
 census <- census_data
 full <- full_data
-  
+folder_paths <- list.files("www/built")
+folder_names <- folder_paths %>%stringr::str_replace_all("_", " ") %>% stringr::str_to_title()
+names(folder_paths) <- folder_names
+
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
@@ -38,12 +42,7 @@ full <- full_data
         h3('View Pre-made Trelliscopes'),
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
-                    choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
-                                'Rape over the Years by State', 'Robbery over the Years by State', 
-                                'Aggravated Assailt over the Years by State', 
-                                'Property Crime over the Years by State', 'Burglary over the Years by State', 
-                                'Theft over the Years by State', 'Motor Vehicle Theft over the Years by State',
-                                'Arson over the Years by State')),
+                    choices = folder_paths),
         actionButton(inputId = 'view_trells',
                      label = "View") ## view_trells 
       ), # sidebarPanel
@@ -59,7 +58,7 @@ server <- function(input, output, session) {
   observeEvent(input$view_trells, {
     showModal(modalDialog(title = 'Link to Trelliscope:',
                           helpText(a('Click the link to view trelliscope', 
-                                     href = paste0('~/www/index.html#display=', input$trello, '&nrow=2&ncol=2&arr=row&pg=1&labels=state&sort=state;asc&filter=&sidebar=-1&fv=',
+                                     href = paste0('built/',input$trello ,'/index.html#display=', input$trello, '&nrow=2&ncol=2&arr=row&pg=1&labels=state&sort=state;asc&filter=&sidebar=-1&fv=',
                                                    target = 'blank'))),
                           easyClose = TRUE))
   })
@@ -77,7 +76,6 @@ server <- function(input, output, session) {
       full %>%
        group_by(.data[[isolate(input$facet)]]) %>%
        nest() %>%
-      slice(1:3) %>%
        mutate(
          panel = map_plot(data, function(x) {
                             ggplot(data = x,
