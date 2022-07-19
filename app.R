@@ -18,17 +18,6 @@ full <- full_data
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
-
-        h3('Create your own trelliscope'),
-        selectInput(inputId = 'x_axis', 
-                    label = 'What column do you want for the x-axis?',
-                    choices = colnames(full)),
-        selectInput(inputId = 'y_axis',
-                    label = 'What column do you want for the y-axis?',
-                    choices = colnames(full)),
-        selectInput(inputId = 'facet',
-                    label = 'What would you like to facet by?',
-                    choices = c('state', 'Year')),
         selectInput(inputId = 'trello',
                     label = 'Pre-made Trelliscopes',
                     choices = c('Violent Crime over the Years by State', 'Murder over the Years by State',
@@ -38,11 +27,7 @@ full <- full_data
                                 'Theft over the Years by State', 'Motor Vehicle Theft over the Years by State',
                                 'Arson over the Years by State')),
         actionButton(inputId = 'view_trells',
-                     label = "View"), ## view_trells 
-        textInput(inputId = 'save_trell',
-                  label = 'Name to Save'),
-        actionButton(inputId = 'trells',
-                     label = 'Create Trelliscope')
+                     label = "View") ## view_trells 
       ), # sidebarPanel
       
       mainPanel(
@@ -67,6 +52,7 @@ observeEvent(input$trells, {
 
  output$plot <- renderTrelliscope({
     input$trells
+
   trell <- ggplot(data = full, aes_string(x = isolate(input$x_axis), y = isolate(input$y_axis))) +
     geom_line() +
     geom_point() +
@@ -75,7 +61,7 @@ observeEvent(input$trells, {
     facet_trelliscope(~ isolate(input$facet), nrow = 2, ncol = 2, name = isolate(input$save_trell), 
                       path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
        ggsave(trell)
- trell
+  return(trell)
 #crime %>%
 #  group_by(input$facet) %>% 
 #  nest() %>%
