@@ -9,9 +9,10 @@ library(shinythemes)
 library(shinydashboard)
 library(readr)
 library(homelessR)
-crime <- crime_data # read.csv('/Users/Becca/Documents/Data Consulting/county_data.csv', sep = ',', header = TRUE)
-# Define UI for application that draws a histogram
-# hud <- hud
+
+crime <- crime_data
+hud <- hud_data
+full <- full_data
   
   ui <- fluidPage(
     sidebarLayout(
@@ -58,9 +59,6 @@ crime <- crime_data # read.csv('/Users/Becca/Documents/Data Consulting/county_da
       ), # sidebarPanel
       
       mainPanel(
-        plotOutput(outputId = 'graphs', 
-                   width = "1024px",
-                   height = "768px"),
         withSpinner(trelliscopeOutput(outputId = 'plot')),
         textOutput(outputId = 'description_funding_graph')
       ) # mainPanel
@@ -77,20 +75,20 @@ server <- function(input, output, session) {
   })
 }
 
-#observeEvent(input$trells, {
+observeEvent(input$trells, {
 ## when the button is clicked, create the trelliscope in the shiny app
-## observeEvent for trells
-# output$plot <- renderTrelliscope({
-##    input$trells
-#  trell <- ggplot(data = cri, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
-#    geom_line() +
-#    geom_point() +
-#    theme_bw() +
-#    ylab(input$column) +
-#    facet_trelliscope(~ input$facet, nrow = 2, ncol = 2, name = input$save_trell, 
-#                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
-#       ggsave(trell)
-# trell
+
+ output$plot <- renderTrelliscope({
+    input$trells
+  trell <- ggplot(data = cri, aes_string(x = isolate(input$x-axis), y = isolate(input$y-axis))) +
+    geom_line() +
+    geom_point() +
+    theme_bw() +
+    ylab(input$column) +
+    facet_trelliscope(~ input$facet, nrow = 2, ncol = 2, name = input$save_trell, 
+                      path = '/Users/Becca/Documents/Data Consulting/homelessR/create_url/www')
+       ggsave(trell)
+ trell
 #crime %>%
 #  group_by(input$facet) %>% 
 #  nest() %>%
@@ -105,9 +103,9 @@ server <- function(input, output, session) {
 #  ungroup() %>%
 #  trelliscope(name = "Crime and Homelessness", ncol = 2, nrow = 2, self_contained = TRUE)
 #)
-# }) ## end of the trelliscope
+ }) ## end of the trelliscope
 
-#}) ## observeEvent for trells
+}) ## observeEvent for trells
 
 
 # Run the application 
